@@ -793,7 +793,7 @@ defmodule Ecto.Adapters.DynamoDB do
           _ when field_is_nil -> acc
           :utc_datetime   ->
             update_fun = fn v ->
-              {:ok, dt} = DateTime.from_iso8601(v)
+              {:ok, dt, _offset} = DateTime.from_iso8601(v)
               dt
             end
             Map.update!(acc, field, update_fun)
